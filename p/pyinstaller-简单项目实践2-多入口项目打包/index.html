@@ -1,805 +1,121 @@
-<!DOCTYPE html>
-<html lang="zh-cn" dir="ltr">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=7253&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="使用PyInstaller进行Python多入口项目打包实践。">
-<title>PyInstaller 简单项目实践2-多入口项目打包</title>
-
-<link rel='canonical' href='http://localhost:7253/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/'>
-
-<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="PyInstaller 简单项目实践2-多入口项目打包">
-<meta property='og:description' content="使用PyInstaller进行Python多入口项目打包实践。">
-<meta property='og:url' content='http://localhost:7253/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/'>
-<meta property='og:site_name' content='Feiy'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Python' /><meta property='article:tag' content='PyInstaller' /><meta property='article:published_time' content='2025-02-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-02-19T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:7253/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller.png' />
-<meta name="twitter:title" content="PyInstaller 简单项目实践2-多入口项目打包">
-<meta name="twitter:description" content="使用PyInstaller进行Python多入口项目打包实践。"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='http://localhost:7253/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller.png' />
-    <link rel="shortcut icon" href="/favicon.svg" />
-
-    </head>
-    <body class="
-    article-page
-    ">
-    <script>
-        (function() {
-            const colorSchemeKey = 'StackColorScheme';
-            if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
-            }
-        })();
-    </script><script>
-    (function() {
-        const colorSchemeKey = 'StackColorScheme';
-        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
-        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
-            
-
-            document.documentElement.dataset.scheme = 'dark';
-        } else {
-            document.documentElement.dataset.scheme = 'light';
-        }
-    })();
-</script>
-<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
-    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
-    </button>
-
-    <header>
-        
-            
-            <figure class="site-avatar">
-                <a href="/">
-                
-                    
-                    
-                    
-                        
-                        <img src="/img/avatar_hu_641200513c3dbb93.jpg" width="300"
-                            height="300" class="site-logo" loading="lazy" alt="Avatar">
-                    
-                
-                </a>
-                
-            </figure>
-            
-        
-        
-        <div class="site-meta">
-            <h1 class="site-name"><a href="/">Feiy</a></h1>
-            <h2 class="site-description">欢迎来到我的网站</h2>
-        </div>
-    </header><ol class="menu-social">
-            
-                <li>
-                    <a 
-                        href='https://space.bilibili.com/365340456'
-                        target="_blank"
-                        title="Bilibili"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
-                        
-                    </a>
-                </li>
-            
-                <li>
-                    <a 
-                        href='https://github.com/Feiyt'
-                        target="_blank"
-                        title="GitHub"
-                        rel="me"
-                    >
-                        
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
-</svg>
-
-
-
-                        
-                    </a>
-                </li>
-            
-        </ol><ol class="menu" id="main-menu">
-        
-        
-        
-        <li >
-            <a href='/%E5%85%B3%E4%BA%8E/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="7" r="4" />
-  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-</svg>
-
-
-
-                
-                <span>关于</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/archives/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <rect x="3" y="4" width="18" height="4" rx="2" />
-  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
-  <line x1="10" y1="12" x2="14" y2="12" />
-</svg>
-
-
-
-                
-                <span>归档</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/search/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="10" cy="10" r="7" />
-  <line x1="21" y1="21" x2="15" y2="15" />
-</svg>
-
-
-
-                
-                <span>搜索</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
-  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
-</svg>
-
-
-
-                
-                <span>友情链接</span>
-            </a>
-        </li>
-        
-        <li class="menu-bottom-section">
-            <ol class="menu">
-
-                
-                    <li id="dark-mode-toggle">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="8" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="16" cy="12" r="2" />
-  <rect x="2" y="6" width="20" height="12" rx="6" />
-</svg>
-
-
-
-                        <span>暗色模式</span>
-                    </li>
-                
-            </ol>
-        </li>
-    </ol>
-</aside>
-
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">目录</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li><a href="#1-准备环境">1. 准备环境</a></li>
-    <li><a href="#2-创建打包脚本">2. 创建打包脚本</a>
-      <ol>
-        <li><a href="#方法一使用命令行直接打包">方法一：使用命令行直接打包</a></li>
-        <li><a href="#方法二创建-spec-文件后打包">方法二：创建 spec 文件后打包</a></li>
-      </ol>
-    </li>
-    <li><a href="#3-解决可能的问题">3. 解决可能的问题</a></li>
-    <li><a href="#4-自定义输出名">4. 自定义输出名：</a></li>
-    <li><a href="#5-测试">5. 测试</a></li>
-    <li><a href="#关键注意点">关键注意点</a></li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
-            <main class="main full-width">
-    <article class="has-image main-article">
-    <header class="article-header">
-        <div class="article-image">
-            <a href="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/">
-                <img src="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller_hu_b877a2902264e84f.png"
-                        srcset="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller_hu_b877a2902264e84f.png 800w, /p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller_hu_8ad233766bb88684.png 1600w"
-                        width="800" 
-                        height="450" 
-                        loading="lazy"
-                        alt="Featured image of post PyInstaller 简单项目实践2-多入口项目打包" />
-                
-            </a>
-        </div>
-    
-
-    <div class="article-details">
-    
-    <header class="article-category">
-        
-            <a href="/categories/%E6%95%99%E7%A8%8B/" >
-                教程
-            </a>
-        
-            <a href="/categories/python/" >
-                Python
-            </a>
-        
-    </header>
-    
-
-    <div class="article-title-wrapper">
-        <h2 class="article-title">
-            <a href="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/">PyInstaller 简单项目实践2-多入口项目打包</a>
-        </h2>
-    
-        
-        <h3 class="article-subtitle">
-            使用PyInstaller进行Python多入口项目打包实践。
-        </h3>
-        
-    </div>
-
-    
-    
-    
-    
-    <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
-  <circle cx="18" cy="18" r="4" />
-  <path d="M15 3v4" />
-  <path d="M7 3v4" />
-  <path d="M3 11h16" />
-  <path d="M18 16.496v1.504l1 1" />
-</svg>
-                <time class="article-time--published">2025-02-19</time>
-            </div>
-        
-
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    阅读时长: 2 分钟
-                </time>
-            </div>
-        
-    </footer>
-    
-
-    
-</div>
-
-</header>
-
-    <section class="article-content">
-    
-    
-    <p>使用PyInstaller 进行 Python 多入口项目打包实践。以下是本次测试的项目结构：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.
-</span></span><span class="line"><span class="cl">├── 2048/
-</span></span><span class="line"><span class="cl">│   ├── 2048.py            # 2048 游戏逻辑与 UI
-</span></span><span class="line"><span class="cl">│   └── high_score.txt     # 2048 最高分记录文件
-</span></span><span class="line"><span class="cl">├── Gobang/
-</span></span><span class="line"><span class="cl">│   ├── ManAndMachine.py   # 五子棋人机对战逻辑与 UI
-</span></span><span class="line"><span class="cl">│   ├── ManAndMan.py       # 五子棋人人对战逻辑与 UI
-</span></span><span class="line"><span class="cl">│   └── checkerboard.py    # 五子棋共享棋盘逻辑与棋子定义
-</span></span><span class="line"><span class="cl">├── Minesweeper/
-</span></span><span class="line"><span class="cl">│   └── Minesweeper.py     # 扫雷游戏逻辑与 UI
-</span></span><span class="line"><span class="cl">├── Snake/
-</span></span><span class="line"><span class="cl">│   └── Snake-eating.py    # 贪吃蛇游戏逻辑与 UI
-</span></span><span class="line"><span class="cl">├── resource/
-</span></span><span class="line"><span class="cl">│   ├── fonts/
-</span></span><span class="line"><span class="cl">│   │   └── simsun.ttc     # 启动器使用的字体文件 (宋体)
-</span></span><span class="line"><span class="cl">│   └── images/
-</span></span><span class="line"><span class="cl">|       └── favicon.ico    # 启动器图标
-</span></span><span class="line"><span class="cl">│       ├── 2048.ico       # 2048 图标
-</span></span><span class="line"><span class="cl">│       ├── gobang.ico     # 五子棋图标
-</span></span><span class="line"><span class="cl">│       ├── minesweeper.ico # 扫雷图标
-</span></span><span class="line"><span class="cl">│       └── snake.ico      # 贪吃蛇图标
-</span></span><span class="line"><span class="cl">├── .idea/                   # IDE 配置文件 (例如 PyCharm, VSCode)
-</span></span><span class="line"><span class="cl">├── game_launcher.py       # 主入口 - 基于 Tkinter 的游戏选择器 UI
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="1-准备环境">1. 准备环境
-</h2><p>首先确保已经安装 Python 和 PyInstaller：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install pyinstaller  
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="2-创建打包脚本">2. 创建打包脚本
-</h2><p>创建一个打包脚本 <code>build.spec</code> 或在命令行直接使用 PyInstaller 命令。以下是推荐的方式：</p>
-<h3 id="方法一使用命令行直接打包">方法一：使用命令行直接打包
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pyinstaller --onefile --windowed --icon<span class="o">=</span>resource/images/favicon.ico --add-data<span class="o">=</span><span class="s2">&#34;resource;resource&#34;</span> --add-data<span class="o">=</span><span class="s2">&#34;2048;2048&#34;</span> --add-data<span class="o">=</span><span class="s2">&#34;Gobang;Gobang&#34;</span> --add-data<span class="o">=</span><span class="s2">&#34;Minesweeper;Minesweeper&#34;</span> --add-data<span class="o">=</span><span class="s2">&#34;Snake;Snake&#34;</span> game_launcher.py  
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="方法二创建-spec-文件后打包">方法二：创建 spec 文件后打包
-</h3><ul>
-<li>首先生成 spec 文件：</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pyinstaller --onefile --windowed game_launcher.py  
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>然后编辑生成的 <code>game_launcher.spec</code> 文件，修改 <code>datas</code> 部分：</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">Analysis</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s1">&#39;game_launcher.py&#39;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="n">pathex</span><span class="o">=</span><span class="p">[],</span>
-</span></span><span class="line"><span class="cl">    <span class="n">binaries</span><span class="o">=</span><span class="p">[],</span>
-</span></span><span class="line"><span class="cl">    <span class="n">datas</span><span class="o">=</span><span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s1">&#39;resource&#39;</span><span class="p">,</span> <span class="s1">&#39;resource&#39;</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s1">&#39;2048&#39;</span><span class="p">,</span> <span class="s1">&#39;2048&#39;</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s1">&#39;Gobang&#39;</span><span class="p">,</span> <span class="s1">&#39;Gobang&#39;</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s1">&#39;Minesweeper&#39;</span><span class="p">,</span> <span class="s1">&#39;Minesweeper&#39;</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">        <span class="p">(</span><span class="s1">&#39;Snake&#39;</span><span class="p">,</span> <span class="s1">&#39;Snake&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="n">hiddenimports</span><span class="o">=</span><span class="p">[],</span>
-</span></span><span class="line"><span class="cl">    <span class="n">hookspath</span><span class="o">=</span><span class="p">[],</span>
-</span></span><span class="line"><span class="cl">    <span class="n">hooksconfig</span><span class="o">=</span><span class="p">{},</span>
-</span></span><span class="line"><span class="cl">    <span class="n">runtime_hooks</span><span class="o">=</span><span class="p">[],</span>
-</span></span><span class="line"><span class="cl">    <span class="n">excludes</span><span class="o">=</span><span class="p">[],</span>
-</span></span><span class="line"><span class="cl">    <span class="n">win_no_prefer_redirects</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">win_private_assemblies</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">cipher</span><span class="o">=</span><span class="n">block_cipher</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">noarchive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>  
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>然后使用 spec 文件打包：</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pyinstaller game_launcher.spec  
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="3-解决可能的问题">3. 解决可能的问题
-</h2><ul>
-<li><strong>字体问题</strong>：确保字体文件正确打包，代码中加载字体时使用相对路径：</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">font_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;resource&#39;</span><span class="p">,</span> <span class="s1">&#39;fonts&#39;</span><span class="p">,</span> <span class="s1">&#39;simsun.ttc&#39;</span><span class="p">)</span>  
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li><strong>图标问题</strong>：确保所有游戏的图标文件正确打包，并在代码中使用相对路径引用。</li>
-<li><strong>数据文件问题</strong>：对于高分记录等文件，确保使用相对路径访问：</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">high_score_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;2048&#39;</span><span class="p">,</span> <span class="s1">&#39;high_score.txt&#39;</span><span class="p">)</span>  
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="4-自定义输出名">4. 自定义输出名：
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pyinstaller --onefile --windowed --name <span class="s2">&#34;MyGameLauncher&#34;</span> game_launcher.py  
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="5-测试">5. 测试
-</h2><p>打包完成后，确保：</p>
-<ul>
-<li>打包完成后，EXE 文件会生成在 <code>dist</code> 目录下</li>
-<li>所有游戏都能从启动器正常启动</li>
-<li>高分记录功能正常工作</li>
-<li>所有图标和资源显示正常</li>
-<li>没有控制台窗口弹出（因为使用了 &ndash;windowed 参数）</li>
-</ul>
-<h2 id="关键注意点">关键注意点
-</h2><p><img src="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/2.png"
-	width="1398"
-	height="1218"
-	srcset="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/2_hu_816f56be1c48bb07.png 480w, /p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/2_hu_203acc84e9743db4.png 1024w"
-	loading="lazy"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="114"
-		data-flex-basis="275px"
-	
-></p>
-
-</section>
-
-
-    <footer class="article-footer">
-    
-    <section class="article-tags">
-        
-            <a href="/tags/python/">Python</a>
-        
-            <a href="/tags/pyinstaller/">PyInstaller</a>
-        
-    </section>
-
-
-    </footer>
-
-
-    
-        <link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
-            ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
-                defer
-                >
-            </script><script>
-    window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
-
-    
-</article>
-
-    
-
-    
-
-<aside class="related-content--wrapper">
-    <h2 class="section-title">相关文章</h2>
-    <div class="related-content">
-        <div class="flex article-list--tile">
-            
-                
-<article class="has-image">
-    <a href="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B51-%E5%8D%95%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/">
-        
-        
-            <div class="article-image">
-                <img src="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B51-%E5%8D%95%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller.12f776a28f5a292feedaae6111df83a3_hu_87a13919cf48617f.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post PyInstaller 简单项目实践1-单入口项目打包"
-                        
-                        data-hash="md5-Evd2oo9aKS/u2q5hEd&#43;Dow==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">PyInstaller 简单项目实践1-单入口项目打包</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/git-%E5%9F%BA%E7%A1%80/">
-        
-        
-            <div class="article-image">
-                <img src="/p/git-%E5%9F%BA%E7%A1%80/Git.f972b412be86ed6344ae8ac1c372ef74_hu_8e6c1ee65f25b9d6.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Git 基础"
-                        
-                        data-hash="md5-&#43;XK0Er6G7WNErorBw3LvdA==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Git 基础</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/markdown-%E8%AF%AD%E6%B3%95/">
-        
-        
-            <div class="article-image">
-                <img src="/p/markdown-%E8%AF%AD%E6%B3%95/markdown.11cda97e6af907b5b2158e1dd78bdd6a_hu_2ad58d263e26eeb5.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Markdown 语法"
-                        
-                        data-hash="md5-Ec2pfmr5B7WyFY4d14vdag==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Markdown 语法</h2>
-        </div>
-    </a>
-</article>
-
-            
-        </div>
-    </div>
-</aside>
-
-     
-    
-        
-    
-
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-        2025 Feiy
-    </section>
-    
-    <section class="powerby">
-        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
-    </section>
-</footer>
-
-
-    
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
-            >
-
-            </main>
-        </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
-                
-                >
-            </script><script type="text/javascript" src="/ts/main.379fa10eb0d36c6c1cf89d5d3fc6092625019681efe47766dc7dbfb0a2575b81.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
-
-        document.head.appendChild(customFont);
-    }());
-</script>
-
-    </body>
-</html>
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="使用PyInstaller进行Python多入口项目打包实践。"><title>PyInstaller 简单项目实践2-多入口项目打包</title>
+<link rel=canonical href=https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/><link rel=stylesheet href=/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css><meta property='og:title' content="PyInstaller 简单项目实践2-多入口项目打包"><meta property='og:description' content="使用PyInstaller进行Python多入口项目打包实践。"><meta property='og:url' content='https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/'><meta property='og:site_name' content='Feiy'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='Python'><meta property='article:tag' content='PyInstaller'><meta property='article:published_time' content='2025-02-19T00:00:00+00:00'><meta property='article:modified_time' content='2025-02-19T00:00:00+00:00'><meta property='og:image' content='https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller.png'><meta name=twitter:title content="PyInstaller 简单项目实践2-多入口项目打包"><meta name=twitter:description content="使用PyInstaller进行Python多入口项目打包实践。"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller.png'><link rel="shortcut icon" href=/favicon.svg></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hu_641200513c3dbb93.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>Feiy</a></h1><h2 class=site-description>欢迎来到我的网站</h2></div></header><ol class=menu-social><li><a href=https://space.bilibili.com/365340456 target=_blank title=Bilibili rel=me><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 014-4h10a4 4 0 014 4v6a4 4 0 01-4 4H7a4 4 0 01-4-4v-6z"/><path d="M8 3l2 3"/><path d="M16 3l-2 3"/><path d="M9 13v-2"/><path d="M15 11v2"/></svg></a></li><li><a href=https://github.com/Feiyt target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/%E5%85%B3%E4%BA%8E/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>友情链接</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#1-准备环境>1. 准备环境</a></li><li><a href=#2-创建打包脚本>2. 创建打包脚本</a><ol><li><a href=#方法一使用命令行直接打包>方法一：使用命令行直接打包</a></li><li><a href=#方法二创建-spec-文件后打包>方法二：创建 spec 文件后打包</a></li></ol></li><li><a href=#3-解决可能的问题>3. 解决可能的问题</a></li><li><a href=#4-自定义输出名>4. 自定义输出名：</a></li><li><a href=#5-测试>5. 测试</a></li><li><a href=#关键注意点>关键注意点</a></li></ol></nav></div></section></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/><img src=/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller_hu_b877a2902264e84f.png srcset="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller_hu_b877a2902264e84f.png 800w, /p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller_hu_8ad233766bb88684.png 1600w" width=800 height=450 loading=lazy alt="Featured image of post PyInstaller 简单项目实践2-多入口项目打包"></a></div><div class=article-details><header class=article-category><a href=/categories/%E6%95%99%E7%A8%8B/>教程
+</a><a href=/categories/python/>Python</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/>PyInstaller 简单项目实践2-多入口项目打包</a></h2><h3 class=article-subtitle>使用PyInstaller进行Python多入口项目打包实践。</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>2025-02-19</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 2 分钟</time></div></footer></div></header><section class=article-content><p>使用PyInstaller 进行 Python 多入口项目打包实践。以下是本次测试的项目结构：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>├── 2048/
+</span></span><span class=line><span class=cl>│   ├── 2048.py            # 2048 游戏逻辑与 UI
+</span></span><span class=line><span class=cl>│   └── high_score.txt     # 2048 最高分记录文件
+</span></span><span class=line><span class=cl>├── Gobang/
+</span></span><span class=line><span class=cl>│   ├── ManAndMachine.py   # 五子棋人机对战逻辑与 UI
+</span></span><span class=line><span class=cl>│   ├── ManAndMan.py       # 五子棋人人对战逻辑与 UI
+</span></span><span class=line><span class=cl>│   └── checkerboard.py    # 五子棋共享棋盘逻辑与棋子定义
+</span></span><span class=line><span class=cl>├── Minesweeper/
+</span></span><span class=line><span class=cl>│   └── Minesweeper.py     # 扫雷游戏逻辑与 UI
+</span></span><span class=line><span class=cl>├── Snake/
+</span></span><span class=line><span class=cl>│   └── Snake-eating.py    # 贪吃蛇游戏逻辑与 UI
+</span></span><span class=line><span class=cl>├── resource/
+</span></span><span class=line><span class=cl>│   ├── fonts/
+</span></span><span class=line><span class=cl>│   │   └── simsun.ttc     # 启动器使用的字体文件 (宋体)
+</span></span><span class=line><span class=cl>│   └── images/
+</span></span><span class=line><span class=cl>|       └── favicon.ico    # 启动器图标
+</span></span><span class=line><span class=cl>│       ├── 2048.ico       # 2048 图标
+</span></span><span class=line><span class=cl>│       ├── gobang.ico     # 五子棋图标
+</span></span><span class=line><span class=cl>│       ├── minesweeper.ico # 扫雷图标
+</span></span><span class=line><span class=cl>│       └── snake.ico      # 贪吃蛇图标
+</span></span><span class=line><span class=cl>├── .idea/                   # IDE 配置文件 (例如 PyCharm, VSCode)
+</span></span><span class=line><span class=cl>├── game_launcher.py       # 主入口 - 基于 Tkinter 的游戏选择器 UI
+</span></span></code></pre></td></tr></table></div></div><h2 id=1-准备环境>1. 准备环境</h2><p>首先确保已经安装 Python 和 PyInstaller：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pip install pyinstaller  
+</span></span></code></pre></td></tr></table></div></div><h2 id=2-创建打包脚本>2. 创建打包脚本</h2><p>创建一个打包脚本 <code>build.spec</code> 或在命令行直接使用 PyInstaller 命令。以下是推荐的方式：</p><h3 id=方法一使用命令行直接打包>方法一：使用命令行直接打包</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pyinstaller --onefile --windowed --icon<span class=o>=</span>resource/images/favicon.ico --add-data<span class=o>=</span><span class=s2>&#34;resource;resource&#34;</span> --add-data<span class=o>=</span><span class=s2>&#34;2048;2048&#34;</span> --add-data<span class=o>=</span><span class=s2>&#34;Gobang;Gobang&#34;</span> --add-data<span class=o>=</span><span class=s2>&#34;Minesweeper;Minesweeper&#34;</span> --add-data<span class=o>=</span><span class=s2>&#34;Snake;Snake&#34;</span> game_launcher.py  
+</span></span></code></pre></td></tr></table></div></div><h3 id=方法二创建-spec-文件后打包>方法二：创建 spec 文件后打包</h3><ul><li>首先生成 spec 文件：</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pyinstaller --onefile --windowed game_launcher.py  
+</span></span></code></pre></td></tr></table></div></div><ul><li>然后编辑生成的 <code>game_launcher.spec</code> 文件，修改 <code>datas</code> 部分：</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>a</span> <span class=o>=</span> <span class=n>Analysis</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=s1>&#39;game_launcher.py&#39;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>pathex</span><span class=o>=</span><span class=p>[],</span>
+</span></span><span class=line><span class=cl>    <span class=n>binaries</span><span class=o>=</span><span class=p>[],</span>
+</span></span><span class=line><span class=cl>    <span class=n>datas</span><span class=o>=</span><span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=p>(</span><span class=s1>&#39;resource&#39;</span><span class=p>,</span> <span class=s1>&#39;resource&#39;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>        <span class=p>(</span><span class=s1>&#39;2048&#39;</span><span class=p>,</span> <span class=s1>&#39;2048&#39;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>        <span class=p>(</span><span class=s1>&#39;Gobang&#39;</span><span class=p>,</span> <span class=s1>&#39;Gobang&#39;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>        <span class=p>(</span><span class=s1>&#39;Minesweeper&#39;</span><span class=p>,</span> <span class=s1>&#39;Minesweeper&#39;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>        <span class=p>(</span><span class=s1>&#39;Snake&#39;</span><span class=p>,</span> <span class=s1>&#39;Snake&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>hiddenimports</span><span class=o>=</span><span class=p>[],</span>
+</span></span><span class=line><span class=cl>    <span class=n>hookspath</span><span class=o>=</span><span class=p>[],</span>
+</span></span><span class=line><span class=cl>    <span class=n>hooksconfig</span><span class=o>=</span><span class=p>{},</span>
+</span></span><span class=line><span class=cl>    <span class=n>runtime_hooks</span><span class=o>=</span><span class=p>[],</span>
+</span></span><span class=line><span class=cl>    <span class=n>excludes</span><span class=o>=</span><span class=p>[],</span>
+</span></span><span class=line><span class=cl>    <span class=n>win_no_prefer_redirects</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>win_private_assemblies</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>cipher</span><span class=o>=</span><span class=n>block_cipher</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>noarchive</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>  
+</span></span></code></pre></td></tr></table></div></div><ul><li>然后使用 spec 文件打包：</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pyinstaller game_launcher.spec  
+</span></span></code></pre></td></tr></table></div></div><h2 id=3-解决可能的问题>3. 解决可能的问题</h2><ul><li><strong>字体问题</strong>：确保字体文件正确打包，代码中加载字体时使用相对路径：</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>font_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>dirname</span><span class=p>(</span><span class=vm>__file__</span><span class=p>),</span> <span class=s1>&#39;resource&#39;</span><span class=p>,</span> <span class=s1>&#39;fonts&#39;</span><span class=p>,</span> <span class=s1>&#39;simsun.ttc&#39;</span><span class=p>)</span>  
+</span></span></code></pre></td></tr></table></div></div><ul><li><strong>图标问题</strong>：确保所有游戏的图标文件正确打包，并在代码中使用相对路径引用。</li><li><strong>数据文件问题</strong>：对于高分记录等文件，确保使用相对路径访问：</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>high_score_path</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>dirname</span><span class=p>(</span><span class=vm>__file__</span><span class=p>),</span> <span class=s1>&#39;2048&#39;</span><span class=p>,</span> <span class=s1>&#39;high_score.txt&#39;</span><span class=p>)</span>  
+</span></span></code></pre></td></tr></table></div></div><h2 id=4-自定义输出名>4. 自定义输出名：</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pyinstaller --onefile --windowed --name <span class=s2>&#34;MyGameLauncher&#34;</span> game_launcher.py  
+</span></span></code></pre></td></tr></table></div></div><h2 id=5-测试>5. 测试</h2><p>打包完成后，确保：</p><ul><li>打包完成后，EXE 文件会生成在 <code>dist</code> 目录下</li><li>所有游戏都能从启动器正常启动</li><li>高分记录功能正常工作</li><li>所有图标和资源显示正常</li><li>没有控制台窗口弹出（因为使用了 &ndash;windowed 参数）</li></ul><h2 id=关键注意点>关键注意点</h2><p><img src=/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/2.png width=1398 height=1218 srcset="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/2_hu_816f56be1c48bb07.png 480w, /p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/2_hu_203acc84e9743db4.png 1024w" loading=lazy class=gallery-image data-flex-grow=114 data-flex-basis=275px></p></section><footer class=article-footer><section class=article-tags><a href=/tags/python/>Python</a>
+<a href=/tags/pyinstaller/>PyInstaller</a></section></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css integrity=sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js integrity=sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8 crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".main-article");renderMathInElement(e,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}],ignoredClasses:["gist"]})})</script></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B51-%E5%8D%95%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/><div class=article-image><img src=/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B51-%E5%8D%95%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller.12f776a28f5a292feedaae6111df83a3_hu_87a13919cf48617f.png width=250 height=150 loading=lazy alt="Featured image of post PyInstaller 简单项目实践1-单入口项目打包" data-hash="md5-Evd2oo9aKS/u2q5hEd+Dow=="></div><div class=article-details><h2 class=article-title>PyInstaller 简单项目实践1-单入口项目打包</h2></div></a></article><article class=has-image><a href=/p/git-%E5%9F%BA%E7%A1%80/><div class=article-image><img src=/p/git-%E5%9F%BA%E7%A1%80/Git.f972b412be86ed6344ae8ac1c372ef74_hu_8e6c1ee65f25b9d6.jpg width=250 height=150 loading=lazy alt="Featured image of post Git 基础" data-hash="md5-+XK0Er6G7WNErorBw3LvdA=="></div><div class=article-details><h2 class=article-title>Git 基础</h2></div></a></article><article class=has-image><a href=/p/markdown-%E8%AF%AD%E6%B3%95/><div class=article-image><img src=/p/markdown-%E8%AF%AD%E6%B3%95/markdown.11cda97e6af907b5b2158e1dd78bdd6a_hu_2ad58d263e26eeb5.png width=250 height=150 loading=lazy alt="Featured image of post Markdown 语法" data-hash="md5-Ec2pfmr5B7WyFY4d14vdag=="></div><div class=article-details><h2 class=article-title>Markdown 语法</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2025 Feiy</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
