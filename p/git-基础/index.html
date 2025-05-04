@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=7253&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Git相关内容和操作步骤。">
+<title>Git 基础</title>
+
+<link rel='canonical' href='http://localhost:7253/p/git-%E5%9F%BA%E7%A1%80/'>
+
+<link rel="stylesheet" href="/scss/style.min.b9c8156d464c343bdacaf14a871581fb94cbbdb9dd5cbce4ba017361187cc930.css"><meta property='og:title' content="Git 基础">
+<meta property='og:description' content="Git相关内容和操作步骤。">
+<meta property='og:url' content='http://localhost:7253/p/git-%E5%9F%BA%E7%A1%80/'>
+<meta property='og:site_name' content='Feiy'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Git' /><meta property='article:published_time' content='2025-04-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-06T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:7253/p/git-%E5%9F%BA%E7%A1%80/Git.jpg' />
+<meta name="twitter:title" content="Git 基础">
+<meta name="twitter:description" content="Git相关内容和操作步骤。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='http://localhost:7253/p/git-%E5%9F%BA%E7%A1%80/Git.jpg' />
+    <link rel="shortcut icon" href="/favicon.svg" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_641200513c3dbb93.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Feiy</a></h1>
+            <h2 class="site-description">欢迎来到我的网站</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/365340456'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Feiyt'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#11-git-的定义">1.1 Git 的定义</a>
+      <ol>
+        <li><a href="#111-版本控制系统vcs">1.1.1 版本控制系统（VCS）</a></li>
+        <li><a href="#112-git-的特点">1.1.2 Git 的特点</a></li>
+      </ol>
+    </li>
+    <li><a href="#12-git-的用途">1.2 Git 的用途</a>
+      <ol>
+        <li><a href="#121-软件开发">1.2.1 软件开发</a></li>
+        <li><a href="#122-个人项目">1.2.2 个人项目</a></li>
+      </ol>
+    </li>
+    <li><a href="#13-git-的工作原理">1.3 Git 的工作原理</a></li>
+    <li><a href="#14-git-的优势">1.4 Git 的优势</a></li>
+    <li><a href="#15-git-的应用场景">1.5 Git 的应用场景</a></li>
+  </ol>
+
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#31-全局配置">3.1 全局配置</a></li>
+        <li><a href="#32-本地配置可选">3.2 本地配置（可选）</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#41-初始化新仓库">4.1 初始化新仓库</a></li>
+        <li><a href="#42-克隆现有仓库">4.2 克隆现有仓库</a></li>
+        <li><a href="#43-添加文件到仓库">4.3 添加文件到仓库</a></li>
+        <li><a href="#44-提交文件到仓库">4.4 提交文件到仓库</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/git-%E5%9F%BA%E7%A1%80/">
+                <img src="/p/git-%E5%9F%BA%E7%A1%80/Git_hu_24061333c00c3c0b.jpg"
+                        srcset="/p/git-%E5%9F%BA%E7%A1%80/Git_hu_24061333c00c3c0b.jpg 800w, /p/git-%E5%9F%BA%E7%A1%80/Git_hu_8e7771bf6309949c.jpg 1600w"
+                        width="800" 
+                        height="470" 
+                        loading="lazy"
+                        alt="Featured image of post Git 基础" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%95%99%E7%A8%8B/" >
+                教程
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/git-%E5%9F%BA%E7%A1%80/">Git 基础</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Git相关内容和操作步骤。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-04-06</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 8 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>Git 是一个分布式版本控制系统，它是一种用于管理文件和目录的软件工具，广泛应用于软件开发领域。</p>
+<h1 id="1-git基本信息">1 Git基本信息
+</h1><h2 id="11-git-的定义">1.1 Git 的定义
+</h2><h3 id="111-版本控制系统vcs">1.1.1 版本控制系统（VCS）
+</h3><p>版本控制系统是一种记录文件和目录变化历史的工具。它可以帮助用户跟踪文件的修改、比较不同版本之间的差异、恢复到旧版本等。<br>
+版本控制系统分为集中式和分布式两种。Git 是一种分布式版本控制系统，这意味着每个开发者在本地都有一个完整的代码仓库副本，包括代码文件、历史记录等。<br></p>
+<h3 id="112-git-的特点">1.1.2 Git 的特点
+</h3><p><strong>分布式架构</strong>：每个开发者都有完整的代码仓库副本，可以在本地进行离线开发，然后将更改推送到远程仓库。<br>
+<strong>高效性</strong>：Git 使用高效的存储和检索机制，能够快速处理大量的文件和复杂的项目。<br>
+<strong>分支功能强大</strong>：Git 的分支操作非常灵活，可以轻松创建、切换、合并和删除分支，方便开发者进行功能开发、修复问题等。<br>
+<strong>安全性</strong>：Git 使用 SHA-1 散列算法对每个提交进行唯一标识，确保数据的完整性和安全性。<br></p>
+<h2 id="12-git-的用途">1.2 Git 的用途
+</h2><h3 id="121-软件开发">1.2.1 软件开发
+</h3><p><strong>代码管理</strong>：Git 可以帮助开发者管理代码文件，记录代码的修改历史，方便团队协作开发。<br>
+<strong>版本控制</strong>：开发者可以通过 Git 创建不同的版本，如开发版本、测试版本和生产版本，方便管理和发布软件。<br>
+<strong>团队协作</strong>：Git 支持多个开发者同时工作，通过分支和合并机制，可以有效地协调开发进度，减少冲突。<br>
+<strong>代码审查</strong>：Git 提供了代码审查的功能，开发者可以提交代码后，由其他开发者进行审查，确保代码质量。<br></p>
+<h3 id="122-个人项目">1.2.2 个人项目
+</h3><p><strong>文档管理</strong>：Git 也可以用于管理文档、配置文件等，记录文件的修改历史，方便版本回溯。<br>
+<strong>学习记录</strong>：对于学习编程的人来说，Git 可以帮助记录学习过程中的代码修改，方便回顾和总结。<br></p>
+<h2 id="13-git-的工作原理">1.3 Git 的工作原理
+</h2><p><strong>工作区（Working Directory）</strong>：工作区是开发者实际操作的目录，包含了项目的文件和目录。开发者可以在工作区中修改文件、添加新文件等。<br>
+<strong>暂存区（Staging Area）</strong>：暂存区是一个临时存储区域，用于存放即将提交到仓库的文件。当开发者使用 <code>git add</code> 命令时，文件会被添加到暂存区。<br>
+<strong>本地仓库（Local Repository）</strong>：本地仓库是存储在本地的代码仓库副本，包含了项目的完整历史记录。开发者可以通过 <code>git commit</code> 命令将暂存区的文件提交到本地仓库。<br>
+<strong>远程仓库（Remote Repository）</strong>：远程仓库是存储在服务器上的代码仓库副本，用于团队协作和代码备份。开发者可以通过 <code>git push</code> 命令将本地仓库的更改推送到远程仓库，也可以通过 <code>git pull</code> 命令从远程仓库拉取最新的更改。<br></p>
+<h2 id="14-git-的优势">1.4 Git 的优势
+</h2><p><strong>灵活性</strong>：Git 的分布式架构使得开发者可以在本地自由地进行开发，不受网络环境的限制。同时，Git 提供了丰富的命令和工具，可以满足不同开发场景的需求。<br>
+<strong>高效性</strong>：Git 的数据存储和检索机制非常高效，能够快速处理大量的文件和复杂的项目。Git 的分支操作也非常快速，不会影响其他分支的开发。<br>
+<strong>安全性</strong>：Git 使用 SHA-1 散列算法对每个提交进行唯一标识，确保数据的完整性和安全性。Git 还提供了权限管理功能，可以控制不同用户对仓库的访问权限。<br>
+<strong>社区支持</strong>：Git 是开源软件，拥有庞大的用户社区和丰富的文档资源。开发者可以通过社区获取技术支持和经验分享，也可以参与到 Git 的开发和改进中。<br></p>
+<h2 id="15-git-的应用场景">1.5 Git 的应用场景
+</h2><p><strong>开源项目</strong>：许多开源项目使用 Git 来管理代码，如 Linux 内核、Git 本身等。开发者可以通过 Git 克隆开源项目的代码仓库，参与项目开发，提交代码贡献。<br>
+<strong>企业开发</strong>：企业也广泛使用 Git 来管理软件开发项目。Git 的分支功能和团队协作机制可以帮助企业高效地进行项目开发和版本管理。<br>
+<strong>个人学习</strong>：对于学习编程的人来说，Git 是一个非常有用的工具。可以通过 Git 记录学习过程中的代码修改，方便回顾和总结。<br></p>
+<h1 id="2-windows安装-git">2. Windows安装 Git
+</h1><p>访问 Git 官方网站（<a class="link" href="https://git-scm.com/"  target="_blank" rel="noopener"
+    >https://git-scm.com/</a>），下载对应版本的安装程序。<br>
+运行安装程序，按照提示进行安装。在安装过程中，可以选择默认的设置，如安装路径、默认的文本编辑器等。<br>
+安装完成后，在命令行工具（如 cmd 或 PowerShell）中输入 <code>git --version</code>，如果显示 Git 的版本号，说明安装成功。<br></p>
+<p><img src="../../../git-base/git-v.png" alt="Git Version" width="500" height="100"><br></p>
+<h1 id="3-配置-git">3 配置 Git
+</h1><h3 id="31-全局配置">3.1 全局配置
+</h3><p>配置用户名和邮箱，这些信息会在提交代码时被记录。在命令行中输入以下命令：<br></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --global user.name &#34;用户名&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --global user.email &#34;邮箱地址&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样配置后，无论在哪个项目中提交代码，都会使用这个用户名和邮箱。<br></p>
+<h3 id="32-本地配置可选">3.2 本地配置（可选）
+</h3><p>如果要为某个特定的项目设置不同的用户名和邮箱，可以在项目的根目录下运行以下命令：<br></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config user.name &#34;特定项目的用户名&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config user.email &#34;特定项目的邮箱地址&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样只会对该项目产生影响，而不会影响其他项目。<br></p>
+<h1 id="4-本地仓库">4 本地仓库
+</h1><h3 id="41-初始化新仓库">4.1 初始化新仓库
+</h3><p>首先，创建一个目录作为你的项目文件夹。在命令行中输入 <code>mkdir 项目名称</code>，然后进入该目录，使用命令 <code>cd 项目名称</code>。<br>
+在项目目录中运行 <code>git init</code> 命令来初始化一个 Git 仓库。这个命令会在当前目录下创建一个名为 <code>.git</code> 的隐藏目录，里面包含了 Git 仓库的所有必要文件。<br></p>
+<h3 id="42-克隆现有仓库">4.2 克隆现有仓库
+</h3><p>如果想使用一个已经存在的远程仓库，可以通过克隆的方式来获取代码。在命令行中输入 <code>git clone 远程仓库地址</code>（例如 <code>https://github.com/用户名/仓库名.git</code>）。<br>
+克隆完成后，Git 会创建一个与远程仓库同名的本地目录，并将远程仓库中的代码和历史记录都复制到本地目录中。<br></p>
+<h3 id="43-添加文件到仓库">4.3 添加文件到仓库
+</h3><ol>
+<li>添加单个文件
+当在项目目录中创建或修改了一个文件后，需要将这个文件添加到暂存区（staging area）。<br>
+使用命令 <code>git add 文件名</code>（例如 <code>git add README.md</code>）。<br>
+这样，Git 就会将这个文件标记为即将提交的内容。<br></li>
+<li>添加多个文件
+如果一次性修改了多个文件，可以使用 <code>git add .</code> 命令将当前目录下的所有修改过的文件添加到暂存区。<br>
+也可以使用 <code>git add -A</code> 命令，它会将所有修改过的文件（包括新添加的文件、修改过的文件和删除的文件）都添加到暂存区。<br></li>
+<li>查看状态
+在添加文件之前或之后，可以使用 <code>git status</code> 命令来查看当前仓库的状态。这个命令显示哪些文件已经被添加到暂存区，哪些文件还没有被添加，以及是否有未跟踪的文件等信息。<br></li>
+</ol>
+<h3 id="44-提交文件到仓库">4.4 提交文件到仓库
+</h3><ol>
+<li>提交更改
+当你将文件添加到暂存区后，就可以使用 <code>git commit</code> 命令将这些更改提交到本地仓库了。在命令行中输入 <code>git commit -m &quot;提交信息&quot;</code>（将“提交信息”替换为你对这次提交的描述，例如 “添加了 README 文件”）。<br>
+提交信息是必须的，它可以帮助你和其他开发者了解这次提交的内容和目的。<br></li>
+<li>查看提交日志
+提交完成后，你可以使用 <code>git log</code> 命令来查看提交日志。这个命令会显示每次提交的详细信息，包括提交的哈希值（commit hash）、提交者、提交日期和提交信息等。<br>
+如果你只想查看最近几次的提交，可以使用 <code>git log -n</code> 命令（“n”为想要查看的提交数量，例如 <code>git log -5</code> 表示查看最近 5 次提交）。<br></li>
+</ol>
+<h1 id="5-与远程仓库交互">5 与远程仓库交互
+</h1><ol>
+<li>添加远程仓库
+如果之前是通过 <code>git init</code> 初始化的本地仓库，需要将它与远程仓库关联起来。使用命令 <code>git remote add origin 远程仓库地址</code>。<br>
+这里的“origin”是远程仓库的默认名称，可以根据实际需要使用其他名称。<br></li>
+<li>推送代码到远程仓库
+当完成了本地的提交后，可以使用 <code>git push</code> 命令将代码推送到远程仓库。在命令行中输入 <code>git push -u origin main</code>（假设本次修改的本地分支是 main，远程分支也是 main）。<br>
+第一次推送时，<code>-u</code> 参数会将本地分支与远程分支关联起来，以后就可以直接使用 <code>git push</code> 命令来推送代码了。<br></li>
+<li>从远程仓库拉取代码
+如果远程仓库中有新的代码更新，可以使用 <code>git pull</code> 命令将这些更新拉取到本地仓库。在命令行中输入 <code>git pull origin main</code>。<br>
+这个命令会自动将远程仓库中的更改合并到本地分支中。如果存在冲突，Git 会提示解决冲突后再完成合并。<br></li>
+</ol>
+<h1 id="6-分支操作">6 分支操作
+</h1><ol>
+<li>创建分支
+在开发过程中可能需要创建新的分支来进行功能开发或修复问题。使用命令 <code>git branch 分支名</code>来创建一个新的分支。<br>
+创建分支后，当掐仍然在原来的分支上，需要切换到新创建的分支。<br></li>
+<li>切换分支
+使用命令 <code>git checkout 分支名</code>来切换到目标分支。<br>
+也可以使用 <code>git checkout -b 分支名</code> 命令来同时创建并切换到一个新的分支，这相当于先执行 <code>git branch 分支名</code>，再执行 <code>git checkout 分支名</code>。<br></li>
+<li>查看分支
+使用 <code>git branch</code> 命令可以查看当前仓库中的所有分支。当前所在的分支前面会有一个星号（*）标记。<br></li>
+<li>合并分支
+当在某个分支上完成了开发工作，需要将分支的更改合并回主分支（如 main）。首先切换到主分支，然后使用命令 <code>git merge 分支名</code>（“分支名”为要合并的分支名称）。<br>
+如果合并过程中没有冲突，Git 会自动完成合并。如果有冲突，Git 会提示需要手动解决冲突后再完成合并。<br></li>
+<li>删除分支
+当不再需要某个分支时，可以使用 <code>git branch -d 分支名</code>来删除该分支。<br>
+如果分支还没有被合并，Git 会阻止删除操作。如果确定要强制删除，可以使用 <code>git branch -D 分支名</code> 命令。<br></li>
+</ol>
+<h1 id="7-解决冲突">7 解决冲突
+</h1><ol>
+<li>冲突产生的原因
+当你在本地分支和远程分支（或不同的本地分支）上对同一个文件的同一部分进行了修改，然后尝试合并时，就会产生冲突。<br></li>
+<li>解决冲突的步骤
+首先，Git 会标记出冲突的文件，并提示你解决冲突。打开冲突的文件，你会看到类似以下的内容：<br>
+<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>：表示本地分支的更改。<br>
+<code>=======</code>：分隔符。<br>
+<code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 分支名</code>：表示要合并的分支的更改。<br>
+你需要手动编辑文件，决定保留哪些更改，删除冲突标记（<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>、<code>=======</code> 和 `<br></li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/git/">Git</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/markdown-%E8%AF%AD%E6%B3%95/">
+        
+        
+            <div class="article-image">
+                <img src="/p/markdown-%E8%AF%AD%E6%B3%95/markdown.11cda97e6af907b5b2158e1dd78bdd6a_hu_2ad58d263e26eeb5.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Markdown 语法"
+                        
+                        data-hash="md5-Ec2pfmr5B7WyFY4d14vdag==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Markdown 语法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/">
+        
+        
+            <div class="article-image">
+                <img src="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller.12f776a28f5a292feedaae6111df83a3_hu_87a13919cf48617f.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post PyInstaller 简单项目实践2-多入口项目打包"
+                        
+                        data-hash="md5-Evd2oo9aKS/u2q5hEd&#43;Dow==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PyInstaller 简单项目实践2-多入口项目打包</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B51-%E5%8D%95%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/">
+        
+        
+            <div class="article-image">
+                <img src="/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B51-%E5%8D%95%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller.12f776a28f5a292feedaae6111df83a3_hu_87a13919cf48617f.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post PyInstaller 简单项目实践1-单入口项目打包"
+                        
+                        data-hash="md5-Evd2oo9aKS/u2q5hEd&#43;Dow==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PyInstaller 简单项目实践1-单入口项目打包</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 Feiy
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.379fa10eb0d36c6c1cf89d5d3fc6092625019681efe47766dc7dbfb0a2575b81.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
