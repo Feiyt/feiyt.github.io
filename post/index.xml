@@ -1523,6 +1523,8 @@ alt="Google"
 >Supported TeX Functions&lt;/a>&lt;/p>
 &lt;h3 id="examples">Examples
 &lt;/h3>&lt;p>Inline math: $\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…$&lt;/p>
+&lt;p>Block math:
+&lt;/p>
 $$
 \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } }
 $$</description></item><item><title>Emoji Support</title><link>https://Aithan-web.github.io/p/emoji-support/</link><pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/emoji-support/</guid><description>&lt;img src="https://Aithan-web.github.io/p/emoji-support/the-creative-exchange-d2zvqp3fpro-unsplash.jpg" alt="Featured image of post Emoji Support" />&lt;p>Emoji can be enabled in a Hugo project in a number of ways.&lt;/p>
