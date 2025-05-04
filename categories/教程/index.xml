@@ -1,4 +1,269 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教程 on Feiy</title><link>https://Aithan-web.github.io/categories/%E6%95%99%E7%A8%8B/</link><description>Recent content in 教程 on Feiy</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Feiy</copyright><lastBuildDate>Sun, 06 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Aithan-web.github.io/categories/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>Git 基础</title><link>https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/</link><pubDate>Sun, 06 Apr 2025 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/</guid><description>&lt;img src="https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/Git.jpg" alt="Featured image of post Git 基础" />&lt;p>Git 是一个分布式版本控制系统，它是一种用于管理文件和目录的软件工具，广泛应用于软件开发领域。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教程 on Feiy</title><link>https://Aithan-web.github.io/categories/%E6%95%99%E7%A8%8B/</link><description>Recent content in 教程 on Feiy</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Feiy</copyright><lastBuildDate>Wed, 19 Feb 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Aithan-web.github.io/categories/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>PyInstaller 简单项目实践2-多入口项目打包</title><link>https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/</link><pubDate>Wed, 19 Feb 2025 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/</guid><description>&lt;img src="https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller.png" alt="Featured image of post PyInstaller 简单项目实践2-多入口项目打包" />&lt;p>使用PyInstaller 进行 Python 多入口项目打包实践。以下是本次测试的项目结构：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── 2048/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── 2048.py # 2048 游戏逻辑与 UI
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── high_score.txt # 2048 最高分记录文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Gobang/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── ManAndMachine.py # 五子棋人机对战逻辑与 UI
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── ManAndMan.py # 五子棋人人对战逻辑与 UI
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── checkerboard.py # 五子棋共享棋盘逻辑与棋子定义
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Minesweeper/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── Minesweeper.py # 扫雷游戏逻辑与 UI
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Snake/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── Snake-eating.py # 贪吃蛇游戏逻辑与 UI
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── resource/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── fonts/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ │ └── simsun.ttc # 启动器使用的字体文件 (宋体)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── images/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">| └── favicon.ico # 启动器图标
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── 2048.ico # 2048 图标
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── gobang.ico # 五子棋图标
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── minesweeper.ico # 扫雷图标
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── snake.ico # 贪吃蛇图标
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── .idea/ # IDE 配置文件 (例如 PyCharm, VSCode)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── game_launcher.py # 主入口 - 基于 Tkinter 的游戏选择器 UI
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="1-准备环境">1. 准备环境
+&lt;/h2>&lt;p>首先确保已经安装 Python 和 PyInstaller：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pip install pyinstaller
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="2-创建打包脚本">2. 创建打包脚本
+&lt;/h2>&lt;p>创建一个打包脚本 &lt;code>build.spec&lt;/code> 或在命令行直接使用 PyInstaller 命令。以下是推荐的方式：&lt;/p>
+&lt;h3 id="方法一使用命令行直接打包">方法一：使用命令行直接打包
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller --onefile --windowed --icon&lt;span class="o">=&lt;/span>resource/images/favicon.ico --add-data&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;resource;resource&amp;#34;&lt;/span> --add-data&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;2048;2048&amp;#34;&lt;/span> --add-data&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;Gobang;Gobang&amp;#34;&lt;/span> --add-data&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;Minesweeper;Minesweeper&amp;#34;&lt;/span> --add-data&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;Snake;Snake&amp;#34;&lt;/span> game_launcher.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="方法二创建-spec-文件后打包">方法二：创建 spec 文件后打包
+&lt;/h3>&lt;ul>
+&lt;li>首先生成 spec 文件：&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller --onefile --windowed game_launcher.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>然后编辑生成的 &lt;code>game_launcher.spec&lt;/code> 文件，修改 &lt;code>datas&lt;/code> 部分：&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Analysis&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;game_launcher.py&amp;#39;&lt;/span>&lt;span class="p">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">pathex&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">binaries&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">datas&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;resource&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;resource&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;2048&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;2048&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Gobang&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Gobang&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Minesweeper&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Minesweeper&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Snake&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Snake&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hiddenimports&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hookspath&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hooksconfig&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">runtime_hooks&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">excludes&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[],&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">win_no_prefer_redirects&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">win_private_assemblies&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cipher&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">block_cipher&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">noarchive&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>然后使用 spec 文件打包：&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller game_launcher.spec
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="3-解决可能的问题">3. 解决可能的问题
+&lt;/h2>&lt;ul>
+&lt;li>&lt;strong>字体问题&lt;/strong>：确保字体文件正确打包，代码中加载字体时使用相对路径：&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">font_path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">dirname&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vm">__file__&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s1">&amp;#39;resource&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;fonts&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;simsun.ttc&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>&lt;strong>图标问题&lt;/strong>：确保所有游戏的图标文件正确打包，并在代码中使用相对路径引用。&lt;/li>
+&lt;li>&lt;strong>数据文件问题&lt;/strong>：对于高分记录等文件，确保使用相对路径访问：&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">high_score_path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">dirname&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vm">__file__&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s1">&amp;#39;2048&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;high_score.txt&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="4-自定义输出名">4. 自定义输出名：
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller --onefile --windowed --name &lt;span class="s2">&amp;#34;MyGameLauncher&amp;#34;&lt;/span> game_launcher.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="5-测试">5. 测试
+&lt;/h2>&lt;p>打包完成后，确保：&lt;/p>
+&lt;ul>
+&lt;li>打包完成后，EXE 文件会生成在 &lt;code>dist&lt;/code> 目录下&lt;/li>
+&lt;li>所有游戏都能从启动器正常启动&lt;/li>
+&lt;li>高分记录功能正常工作&lt;/li>
+&lt;li>所有图标和资源显示正常&lt;/li>
+&lt;li>没有控制台窗口弹出（因为使用了 &amp;ndash;windowed 参数）&lt;/li>
+&lt;/ul>
+&lt;h2 id="关键注意点">关键注意点
+&lt;/h2>&lt;p>&lt;img src="https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/2.png"
+width="1398"
+height="1218"
+srcset="https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/2_hu_816f56be1c48bb07.png 480w, https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/2_hu_203acc84e9743db4.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="114"
+data-flex-basis="275px"
+>&lt;/p></description></item><item><title>PyInstaller 简单项目实践1-单入口项目打包</title><link>https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B51-%E5%8D%95%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/</link><pubDate>Sun, 16 Feb 2025 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B51-%E5%8D%95%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/</guid><description>&lt;img src="https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B51-%E5%8D%95%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller.png" alt="Featured image of post PyInstaller 简单项目实践1-单入口项目打包" />&lt;p>PyInstaller 支持跨平台打包，可以将 Python 代码打包成适用于 Windows、macOS 和 Linux 系统的可执行文件。它能够自动查找程序所依赖的 Python 库文件，并将其打包到一个文件或者一个文件夹中。&lt;/p>
+&lt;h2 id="1安装-pyinstaller">1.安装 PyInstaller
+&lt;/h2>&lt;p>使用 pip 安装最新版 PyInstaller：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pip install pyinstaller
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>升级已安装的 PyInstaller：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pip install --upgrade pyinstaller
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在 Windows 系统上，PyInstaller 会自动安装依赖的 PyWin32 或 pypiwin32。&lt;/p>
+&lt;h2 id="2基本打包方法">2.基本打包方法
+&lt;/h2>&lt;p>打开命令提示符或终端，定位到项目文件夹 “E:\project\script.py”&lt;/p>
+&lt;p>&lt;strong>打包为单个文件夹（默认）&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller script.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这会在当前目录下生成：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>build/&lt;/code> 文件夹：包含临时文件，可安全删除&lt;/li>
+&lt;li>&lt;code>dist/&lt;/code> 文件夹：包含可执行文件和所有依赖项&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>打包为单个可执行文件&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller -F script.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>或&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller --onefile script.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这样打包后，在 “dist” 文件夹下会直接生成一个单独的可执行文件，例如 “script.exe”,双击它就可以运行项目，就像运行普通软件一样。这种方式生成的文件体积可能会更大，并且启动时间可能稍长，因为它需要在运行时解压所有依赖。&lt;/p>
+&lt;p>&lt;strong>指定生成文件的路径&lt;/strong>&lt;br>
+果不想让 PyInstaller 在默认的 “dist” 文件夹下生成文件，可以指定输出路径。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller --distpath&lt;span class="o">=&lt;/span>output_folder script.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Git 基础</title><link>https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/</link><pubDate>Sun, 02 Jun 2024 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/</guid><description>&lt;img src="https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/Git.jpg" alt="Featured image of post Git 基础" />&lt;p>Git 是一个分布式版本控制系统，它是一种用于管理文件和目录的软件工具，广泛应用于软件开发领域。&lt;/p>
 &lt;h1 id="1-git基本信息">1 Git基本信息
 &lt;/h1>&lt;h2 id="11-git-的定义">1.1 Git 的定义
 &lt;/h2>&lt;h3 id="111-版本控制系统vcs">1.1.1 版本控制系统（VCS）
@@ -144,7 +409,7 @@
 &lt;code>=======&lt;/code>：分隔符。&lt;br>
 &lt;code>&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; 分支名&lt;/code>：表示要合并的分支的更改。&lt;br>
 你需要手动编辑文件，决定保留哪些更改，删除冲突标记（&lt;code>&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&lt;/code>、&lt;code>=======&lt;/code> 和 `&lt;br>&lt;/li>
-&lt;/ol></description></item><item><title>Markdown 语法</title><link>https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/</link><pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/</guid><description>&lt;img src="https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/markdown.png" alt="Featured image of post Markdown 语法" />&lt;h1 id="markdown-基本语法">&lt;strong>Markdown 基本语法&lt;/strong>
+&lt;/ol></description></item><item><title>Markdown 语法</title><link>https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/</link><pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/</guid><description>&lt;img src="https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/markdown.png" alt="Featured image of post Markdown 语法" />&lt;h1 id="markdown-基本语法">&lt;strong>Markdown 基本语法&lt;/strong>
 &lt;/h1>&lt;h1 id="01-标题语法">01 标题语法
 &lt;/h1>&lt;p>要创建标题，请在单词或短语前面添加井号 (&lt;code>#&lt;/code>) 。&lt;code>#&lt;/code> 的数量代表了标题的级别。例如，添加三个 &lt;code>#&lt;/code> 表示创建一个三级标题 (&lt;code>&amp;lt;h3&amp;gt;&lt;/code>) (例如：&lt;code>### My Header&lt;/code>)。&lt;/p>
 &lt;table>
@@ -923,269 +1188,4 @@ Markdown 允许你直接使用这些符号，它帮你自动转义字符。如�
 &lt;br>
 &lt;br>
 &lt;p>&lt;strong>本文内容转自 &lt;a class="link" href="https://markdown.com.cn" target="_blank" rel="noopener"
->https://markdown.com.cn&lt;/a>，如有侵权，请联系删除。&lt;/strong>&lt;/p></description></item><item><title>PyInstaller 简单项目实践2-多入口项目打包</title><link>https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/</link><pubDate>Wed, 19 Feb 2025 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/</guid><description>&lt;img src="https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller.png" alt="Featured image of post PyInstaller 简单项目实践2-多入口项目打包" />&lt;p>使用PyInstaller 进行 Python 多入口项目打包实践。以下是本次测试的项目结构：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">.
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── 2048/
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── 2048.py # 2048 游戏逻辑与 UI
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── high_score.txt # 2048 最高分记录文件
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Gobang/
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── ManAndMachine.py # 五子棋人机对战逻辑与 UI
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── ManAndMan.py # 五子棋人人对战逻辑与 UI
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── checkerboard.py # 五子棋共享棋盘逻辑与棋子定义
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Minesweeper/
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── Minesweeper.py # 扫雷游戏逻辑与 UI
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── Snake/
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── Snake-eating.py # 贪吃蛇游戏逻辑与 UI
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── resource/
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── fonts/
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ │ └── simsun.ttc # 启动器使用的字体文件 (宋体)
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── images/
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">| └── favicon.ico # 启动器图标
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── 2048.ico # 2048 图标
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── gobang.ico # 五子棋图标
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ ├── minesweeper.ico # 扫雷图标
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">│ └── snake.ico # 贪吃蛇图标
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── .idea/ # IDE 配置文件 (例如 PyCharm, VSCode)
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">├── game_launcher.py # 主入口 - 基于 Tkinter 的游戏选择器 UI
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="1-准备环境">1. 准备环境
-&lt;/h2>&lt;p>首先确保已经安装 Python 和 PyInstaller：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pip install pyinstaller
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="2-创建打包脚本">2. 创建打包脚本
-&lt;/h2>&lt;p>创建一个打包脚本 &lt;code>build.spec&lt;/code> 或在命令行直接使用 PyInstaller 命令。以下是推荐的方式：&lt;/p>
-&lt;h3 id="方法一使用命令行直接打包">方法一：使用命令行直接打包
-&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller --onefile --windowed --icon&lt;span class="o">=&lt;/span>resource/images/favicon.ico --add-data&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;resource;resource&amp;#34;&lt;/span> --add-data&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;2048;2048&amp;#34;&lt;/span> --add-data&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;Gobang;Gobang&amp;#34;&lt;/span> --add-data&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;Minesweeper;Minesweeper&amp;#34;&lt;/span> --add-data&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;Snake;Snake&amp;#34;&lt;/span> game_launcher.py
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h3 id="方法二创建-spec-文件后打包">方法二：创建 spec 文件后打包
-&lt;/h3>&lt;ul>
-&lt;li>首先生成 spec 文件：&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller --onefile --windowed game_launcher.py
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ul>
-&lt;li>然后编辑生成的 &lt;code>game_launcher.spec&lt;/code> 文件，修改 &lt;code>datas&lt;/code> 部分：&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Analysis&lt;/span>&lt;span class="p">(&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;game_launcher.py&amp;#39;&lt;/span>&lt;span class="p">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">pathex&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[],&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">binaries&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[],&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">datas&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;resource&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;resource&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;2048&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;2048&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Gobang&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Gobang&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Minesweeper&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Minesweeper&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Snake&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;Snake&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hiddenimports&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[],&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hookspath&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[],&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">hooksconfig&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">runtime_hooks&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[],&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">excludes&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">[],&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">win_no_prefer_redirects&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">win_private_assemblies&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cipher&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">block_cipher&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">noarchive&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">False&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ul>
-&lt;li>然后使用 spec 文件打包：&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller game_launcher.spec
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="3-解决可能的问题">3. 解决可能的问题
-&lt;/h2>&lt;ul>
-&lt;li>&lt;strong>字体问题&lt;/strong>：确保字体文件正确打包，代码中加载字体时使用相对路径：&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">font_path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">dirname&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vm">__file__&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s1">&amp;#39;resource&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;fonts&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;simsun.ttc&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ul>
-&lt;li>&lt;strong>图标问题&lt;/strong>：确保所有游戏的图标文件正确打包，并在代码中使用相对路径引用。&lt;/li>
-&lt;li>&lt;strong>数据文件问题&lt;/strong>：对于高分记录等文件，确保使用相对路径访问：&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">high_score_path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">dirname&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="vm">__file__&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="s1">&amp;#39;2048&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;high_score.txt&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="4-自定义输出名">4. 自定义输出名：
-&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller --onefile --windowed --name &lt;span class="s2">&amp;#34;MyGameLauncher&amp;#34;&lt;/span> game_launcher.py
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="5-测试">5. 测试
-&lt;/h2>&lt;p>打包完成后，确保：&lt;/p>
-&lt;ul>
-&lt;li>打包完成后，EXE 文件会生成在 &lt;code>dist&lt;/code> 目录下&lt;/li>
-&lt;li>所有游戏都能从启动器正常启动&lt;/li>
-&lt;li>高分记录功能正常工作&lt;/li>
-&lt;li>所有图标和资源显示正常&lt;/li>
-&lt;li>没有控制台窗口弹出（因为使用了 &amp;ndash;windowed 参数）&lt;/li>
-&lt;/ul>
-&lt;h2 id="关键注意点">关键注意点
-&lt;/h2>&lt;p>&lt;img src="https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/2.png"
-width="1398"
-height="1218"
-srcset="https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/2_hu_816f56be1c48bb07.png 480w, https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/2_hu_203acc84e9743db4.png 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="114"
-data-flex-basis="275px"
->&lt;/p></description></item><item><title>PyInstaller 简单项目实践1-单入口项目打包</title><link>https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B51-%E5%8D%95%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/</link><pubDate>Sun, 16 Feb 2025 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B51-%E5%8D%95%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/</guid><description>&lt;img src="https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B51-%E5%8D%95%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller.png" alt="Featured image of post PyInstaller 简单项目实践1-单入口项目打包" />&lt;p>PyInstaller 支持跨平台打包，可以将 Python 代码打包成适用于 Windows、macOS 和 Linux 系统的可执行文件。它能够自动查找程序所依赖的 Python 库文件，并将其打包到一个文件或者一个文件夹中。&lt;/p>
-&lt;h2 id="1安装-pyinstaller">1.安装 PyInstaller
-&lt;/h2>&lt;p>使用 pip 安装最新版 PyInstaller：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pip install pyinstaller
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>升级已安装的 PyInstaller：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pip install --upgrade pyinstaller
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>在 Windows 系统上，PyInstaller 会自动安装依赖的 PyWin32 或 pypiwin32。&lt;/p>
-&lt;h2 id="2基本打包方法">2.基本打包方法
-&lt;/h2>&lt;p>打开命令提示符或终端，定位到项目文件夹 “E:\project\script.py”&lt;/p>
-&lt;p>&lt;strong>打包为单个文件夹（默认）&lt;/strong>&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller script.py
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>这会在当前目录下生成：&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>build/&lt;/code> 文件夹：包含临时文件，可安全删除&lt;/li>
-&lt;li>&lt;code>dist/&lt;/code> 文件夹：包含可执行文件和所有依赖项&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>打包为单个可执行文件&lt;/strong>&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller -F script.py
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>或&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller --onefile script.py
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>这样打包后，在 “dist” 文件夹下会直接生成一个单独的可执行文件，例如 “script.exe”,双击它就可以运行项目，就像运行普通软件一样。这种方式生成的文件体积可能会更大，并且启动时间可能稍长，因为它需要在运行时解压所有依赖。&lt;/p>
-&lt;p>&lt;strong>指定生成文件的路径&lt;/strong>&lt;br>
-果不想让 PyInstaller 在默认的 “dist” 文件夹下生成文件，可以指定输出路径。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">pyinstaller --distpath&lt;span class="o">=&lt;/span>output_folder script.py
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div></description></item></channel></rss>
+>https://markdown.com.cn&lt;/a>，如有侵权，请联系删除。&lt;/strong>&lt;/p></description></item></channel></rss>
