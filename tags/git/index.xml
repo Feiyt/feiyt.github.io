@@ -1,43 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on Feiy</title><link>https://Aithan-web.github.io/tags/git/</link><description>Recent content in Git on Feiy</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Feiy</copyright><lastBuildDate>Sun, 02 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://Aithan-web.github.io/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git 基础</title><link>https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/</link><pubDate>Sun, 02 Jun 2024 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/</guid><description>&lt;img src="https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/Git.jpg" alt="Featured image of post Git 基础" />&lt;p>Git 是一个分布式版本控制系统，它是一种用于管理文件和目录的软件工具，广泛应用于软件开发领域。&lt;/p>
-&lt;h1 id="1-git基本信息">1 Git基本信息
-&lt;/h1>&lt;h2 id="11-git-的定义">1.1 Git 的定义
-&lt;/h2>&lt;h3 id="111-版本控制系统vcs">1.1.1 版本控制系统（VCS）
-&lt;/h3>&lt;p>版本控制系统是一种记录文件和目录变化历史的工具。它可以帮助用户跟踪文件的修改、比较不同版本之间的差异、恢复到旧版本等。&lt;br>
-版本控制系统分为集中式和分布式两种。Git 是一种分布式版本控制系统，这意味着每个开发者在本地都有一个完整的代码仓库副本，包括代码文件、历史记录等。&lt;br>&lt;/p>
-&lt;h3 id="112-git-的特点">1.1.2 Git 的特点
-&lt;/h3>&lt;p>&lt;strong>分布式架构&lt;/strong>：每个开发者都有完整的代码仓库副本，可以在本地进行离线开发，然后将更改推送到远程仓库。&lt;br>
-&lt;strong>高效性&lt;/strong>：Git 使用高效的存储和检索机制，能够快速处理大量的文件和复杂的项目。&lt;br>
-&lt;strong>分支功能强大&lt;/strong>：Git 的分支操作非常灵活，可以轻松创建、切换、合并和删除分支，方便开发者进行功能开发、修复问题等。&lt;br>
-&lt;strong>安全性&lt;/strong>：Git 使用 SHA-1 散列算法对每个提交进行唯一标识，确保数据的完整性和安全性。&lt;br>&lt;/p>
-&lt;h2 id="12-git-的用途">1.2 Git 的用途
-&lt;/h2>&lt;h3 id="121-软件开发">1.2.1 软件开发
-&lt;/h3>&lt;p>&lt;strong>代码管理&lt;/strong>：Git 可以帮助开发者管理代码文件，记录代码的修改历史，方便团队协作开发。&lt;br>
-&lt;strong>版本控制&lt;/strong>：开发者可以通过 Git 创建不同的版本，如开发版本、测试版本和生产版本，方便管理和发布软件。&lt;br>
-&lt;strong>团队协作&lt;/strong>：Git 支持多个开发者同时工作，通过分支和合并机制，可以有效地协调开发进度，减少冲突。&lt;br>
-&lt;strong>代码审查&lt;/strong>：Git 提供了代码审查的功能，开发者可以提交代码后，由其他开发者进行审查，确保代码质量。&lt;br>&lt;/p>
-&lt;h3 id="122-个人项目">1.2.2 个人项目
-&lt;/h3>&lt;p>&lt;strong>文档管理&lt;/strong>：Git 也可以用于管理文档、配置文件等，记录文件的修改历史，方便版本回溯。&lt;br>
-&lt;strong>学习记录&lt;/strong>：对于学习编程的人来说，Git 可以帮助记录学习过程中的代码修改，方便回顾和总结。&lt;br>&lt;/p>
-&lt;h2 id="13-git-的工作原理">1.3 Git 的工作原理
-&lt;/h2>&lt;p>&lt;strong>工作区（Working Directory）&lt;/strong>：工作区是开发者实际操作的目录，包含了项目的文件和目录。开发者可以在工作区中修改文件、添加新文件等。&lt;br>
-&lt;strong>暂存区（Staging Area）&lt;/strong>：暂存区是一个临时存储区域，用于存放即将提交到仓库的文件。当开发者使用 &lt;code>git add&lt;/code> 命令时，文件会被添加到暂存区。&lt;br>
-&lt;strong>本地仓库（Local Repository）&lt;/strong>：本地仓库是存储在本地的代码仓库副本，包含了项目的完整历史记录。开发者可以通过 &lt;code>git commit&lt;/code> 命令将暂存区的文件提交到本地仓库。&lt;br>
-&lt;strong>远程仓库（Remote Repository）&lt;/strong>：远程仓库是存储在服务器上的代码仓库副本，用于团队协作和代码备份。开发者可以通过 &lt;code>git push&lt;/code> 命令将本地仓库的更改推送到远程仓库，也可以通过 &lt;code>git pull&lt;/code> 命令从远程仓库拉取最新的更改。&lt;br>&lt;/p>
-&lt;h2 id="14-git-的优势">1.4 Git 的优势
-&lt;/h2>&lt;p>&lt;strong>灵活性&lt;/strong>：Git 的分布式架构使得开发者可以在本地自由地进行开发，不受网络环境的限制。同时，Git 提供了丰富的命令和工具，可以满足不同开发场景的需求。&lt;br>
-&lt;strong>高效性&lt;/strong>：Git 的数据存储和检索机制非常高效，能够快速处理大量的文件和复杂的项目。Git 的分支操作也非常快速，不会影响其他分支的开发。&lt;br>
-&lt;strong>安全性&lt;/strong>：Git 使用 SHA-1 散列算法对每个提交进行唯一标识，确保数据的完整性和安全性。Git 还提供了权限管理功能，可以控制不同用户对仓库的访问权限。&lt;br>
-&lt;strong>社区支持&lt;/strong>：Git 是开源软件，拥有庞大的用户社区和丰富的文档资源。开发者可以通过社区获取技术支持和经验分享，也可以参与到 Git 的开发和改进中。&lt;br>&lt;/p>
-&lt;h2 id="15-git-的应用场景">1.5 Git 的应用场景
-&lt;/h2>&lt;p>&lt;strong>开源项目&lt;/strong>：许多开源项目使用 Git 来管理代码，如 Linux 内核、Git 本身等。开发者可以通过 Git 克隆开源项目的代码仓库，参与项目开发，提交代码贡献。&lt;br>
-&lt;strong>企业开发&lt;/strong>：企业也广泛使用 Git 来管理软件开发项目。Git 的分支功能和团队协作机制可以帮助企业高效地进行项目开发和版本管理。&lt;br>
-&lt;strong>个人学习&lt;/strong>：对于学习编程的人来说，Git 是一个非常有用的工具。可以通过 Git 记录学习过程中的代码修改，方便回顾和总结。&lt;br>&lt;/p>
+&lt;h1 id="1-git基本流程预览">1 Git基本流程预览
+&lt;/h1>&lt;p>&lt;img src="https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/git-process.png"
+width="1378"
+height="2898"
+srcset="https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/git-process_hu_3d9fb43d6f361340.png 480w, https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/git-process_hu_cb4ee0b1d93b8c5d.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="47"
+data-flex-basis="114px"
+>&lt;/p>
 &lt;h1 id="2-windows安装-git">2. Windows安装 Git
 &lt;/h1>&lt;p>访问 Git 官方网站（&lt;a class="link" href="https://git-scm.com/" target="_blank" rel="noopener"
 >https://git-scm.com/&lt;/a>），下载对应版本的安装程序。&lt;br>
 运行安装程序，按照提示进行安装。在安装过程中，可以选择默认的设置，如安装路径、默认的文本编辑器等。&lt;br>
 安装完成后，在命令行工具（如 cmd 或 PowerShell）中输入 &lt;code>git --version&lt;/code>，如果显示 Git 的版本号，说明安装成功。&lt;br>&lt;/p>
-&lt;p>&lt;img src="../../../git-base/git-v.png" alt="Git Version" width="500" height="100">&lt;br>&lt;/p>
 &lt;h1 id="3-配置-git">3 配置 Git
 &lt;/h1>&lt;h3 id="31-全局配置">3.1 全局配置
 &lt;/h3>&lt;p>配置用户名和邮箱，这些信息会在提交代码时被记录。在命令行中输入以下命令：&lt;br>&lt;/p>
