@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on Feiy</title><link>https://Aithan-web.github.io/tags/git/</link><description>Recent content in Git on Feiy</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Feiy</copyright><lastBuildDate>Sun, 02 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://Aithan-web.github.io/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Git 基础</title><link>https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/</link><pubDate>Sun, 02 Jun 2024 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/</guid><description>&lt;img src="https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/Git.jpg" alt="Featured image of post Git 基础" />&lt;p>Git 是一个分布式版本控制系统，它是一种用于管理文件和目录的软件工具，广泛应用于软件开发领域。&lt;/p>
 &lt;h1 id="1-git基本流程预览">1 Git基本流程预览
-&lt;/h1>&lt;p>&lt;img src="https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/git-process.png"
-width="1378"
-height="2898"
-srcset="https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/git-process_hu_3d9fb43d6f361340.png 480w, https://Aithan-web.github.io/p/git-%E5%9F%BA%E7%A1%80/git-process_hu_cb4ee0b1d93b8c5d.png 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="47"
-data-flex-basis="114px"
->&lt;/p>
+&lt;/h1>&lt;img src="git-process.png" width="50%" style="display: block; margin: auto;"/>
 &lt;h1 id="2-windows安装-git">2. Windows安装 Git
 &lt;/h1>&lt;p>访问 Git 官方网站（&lt;a class="link" href="https://git-scm.com/" target="_blank" rel="noopener"
 >https://git-scm.com/&lt;/a>），下载对应版本的安装程序。&lt;br>
