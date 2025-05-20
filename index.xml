@@ -3,6 +3,7 @@
 2025.4.测试
 2025.05.04测试结果
 2025年5月4日14:15:38测试
+2025年5月20日18点52分测试
 LaTeX公式样式：&lt;/p>
 \[E = mc^2\]&lt;p>markdown&lt;/p>
 $$E = mc^2$$</description></item><item><title>PyInstaller 简单项目实践2-多入口项目打包</title><link>https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/</link><pubDate>Wed, 19 Feb 2025 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/</guid><description>&lt;img src="https://Aithan-web.github.io/p/pyinstaller-%E7%AE%80%E5%8D%95%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B52-%E5%A4%9A%E5%85%A5%E5%8F%A3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85/PyInstaller.png" alt="Featured image of post PyInstaller 简单项目实践2-多入口项目打包" />&lt;p>使用PyInstaller 进行 Python 多入口项目打包实践。以下是本次测试的项目结构：&lt;/p>
