@@ -374,7 +374,7 @@ data-flex-basis="275px"
 &lt;code>&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD&lt;/code>：表示本地分支的更改。&lt;br>
 &lt;code>=======&lt;/code>：分隔符。&lt;br>
 &lt;code>&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; 分支名&lt;/code>：表示要合并的分支的更改。&lt;br>
-你需要手动编辑文件，决定保留哪些更改，删除冲突标记（&lt;code>&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&lt;/code>、&lt;code>=======&lt;/code> 和 `&lt;br>&lt;/li>
+手动编辑文件，决定保留哪些更改，删除冲突标记（&lt;code>&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&lt;/code>、&lt;code>=======&lt;/code> 和 `&lt;br>&lt;/li>
 &lt;/ol></description></item><item><title>Markdown 语法</title><link>https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/</link><pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/</guid><description>&lt;img src="https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/markdown.png" alt="Featured image of post Markdown 语法" />&lt;h1 id="markdown-基本语法">&lt;strong>Markdown 基本语法&lt;/strong>
 &lt;/h1>&lt;h1 id="01-标题语法">01 标题语法
 &lt;/h1>&lt;p>要创建标题，请在单词或短语前面添加井号 (&lt;code>#&lt;/code>) 。&lt;code>#&lt;/code> 的数量代表了标题的级别。例如，添加三个 &lt;code>#&lt;/code> 表示创建一个三级标题 (&lt;code>&amp;lt;h3&amp;gt;&lt;/code>) (例如：&lt;code>### My Header&lt;/code>)。&lt;/p>

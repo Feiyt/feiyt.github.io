@@ -109,5 +109,5 @@
 &lt;code>&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD&lt;/code>：表示本地分支的更改。&lt;br>
 &lt;code>=======&lt;/code>：分隔符。&lt;br>
 &lt;code>&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; 分支名&lt;/code>：表示要合并的分支的更改。&lt;br>
-你需要手动编辑文件，决定保留哪些更改，删除冲突标记（&lt;code>&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&lt;/code>、&lt;code>=======&lt;/code> 和 `&lt;br>&lt;/li>
+手动编辑文件，决定保留哪些更改，删除冲突标记（&lt;code>&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&lt;/code>、&lt;code>=======&lt;/code> 和 `&lt;br>&lt;/li>
 &lt;/ol></description></item></channel></rss>
