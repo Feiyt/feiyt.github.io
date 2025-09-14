@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Markdown on Feiyt</title><link>https://Aithan-web.github.io/tags/markdown/</link><description>Recent content in Markdown on Feiyt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Feiyt</copyright><lastBuildDate>Tue, 11 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Aithan-web.github.io/tags/markdown/index.xml" rel="self" type="application/rss+xml"/><item><title>测试</title><link>https://Aithan-web.github.io/p/%E6%B5%8B%E8%AF%95/</link><pubDate>Tue, 11 Mar 2025 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/%E6%B5%8B%E8%AF%95/</guid><description>&lt;p&gt;文章主要用于测试&lt;br&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Markdown on Feiyt</title><link>https://feiyt.github.io/tags/markdown/</link><description>Recent content in Markdown on Feiyt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Feiyt</copyright><lastBuildDate>Tue, 11 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://feiyt.github.io/tags/markdown/index.xml" rel="self" type="application/rss+xml"/><item><title>测试</title><link>https://feiyt.github.io/p/%E6%B5%8B%E8%AF%95/</link><pubDate>Tue, 11 Mar 2025 00:00:00 +0000</pubDate><guid>https://feiyt.github.io/p/%E6%B5%8B%E8%AF%95/</guid><description>&lt;p&gt;文章主要用于测试&lt;br&gt;
 无正文内容&lt;br&gt;
 2025.4.测试
 2025.05.04测试结果
@@ -11,7 +11,7 @@
 2025年8月31日13点10分测试
 LaTeX公式样式：&lt;/p&gt;
 \[E = mc^2\]&lt;p&gt;markdown&lt;/p&gt;
-$$E = mc^2$$</description></item><item><title>Markdown 语法</title><link>https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/</link><pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/</guid><description>&lt;img src="https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/markdown.png" alt="Featured image of post Markdown 语法" /&gt;&lt;h1 id="markdown-基本语法"&gt;&lt;strong&gt;Markdown 基本语法&lt;/strong&gt;
+$$E = mc^2$$</description></item><item><title>Markdown 语法</title><link>https://feiyt.github.io/p/markdown-%E8%AF%AD%E6%B3%95/</link><pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate><guid>https://feiyt.github.io/p/markdown-%E8%AF%AD%E6%B3%95/</guid><description>&lt;img src="https://feiyt.github.io/p/markdown-%E8%AF%AD%E6%B3%95/markdown.png" alt="Featured image of post Markdown 语法" /&gt;&lt;h1 id="markdown-基本语法"&gt;&lt;strong&gt;Markdown 基本语法&lt;/strong&gt;
 &lt;/h1&gt;&lt;h1 id="01-标题语法"&gt;01 标题语法
 &lt;/h1&gt;&lt;p&gt;要创建标题，请在单词或短语前面添加井号 (&lt;code&gt;#&lt;/code&gt;) 。&lt;code&gt;#&lt;/code&gt; 的数量代表了标题的级别。例如，添加三个 &lt;code&gt;#&lt;/code&gt; 表示创建一个三级标题 (&lt;code&gt;&amp;lt;h3&amp;gt;&lt;/code&gt;) (例如：&lt;code&gt;### My Header&lt;/code&gt;)。&lt;/p&gt;
 &lt;table&gt;
@@ -487,10 +487,10 @@ See the section on &lt;a class="link" href="#code" &gt;&lt;code&gt;code&lt;/code
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;渲染效果如下：
-&lt;img src="https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/Wilderness.jpg"
+&lt;img src="https://feiyt.github.io/p/markdown-%E8%AF%AD%E6%B3%95/Wilderness.jpg"
 width="5304"
 height="3529"
-srcset="https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/Wilderness_hu_d4c15b2c910d5367.jpg 480w, https://Aithan-web.github.io/p/markdown-%E8%AF%AD%E6%B3%95/Wilderness_hu_93c888f1d9f09236.jpg 1024w"
+srcset="https://feiyt.github.io/p/markdown-%E8%AF%AD%E6%B3%95/Wilderness_hu_d4c15b2c910d5367.jpg 480w, https://feiyt.github.io/p/markdown-%E8%AF%AD%E6%B3%95/Wilderness_hu_93c888f1d9f09236.jpg 1024w"
 loading="lazy"
 alt="Wilderness"
 class="gallery-image"
@@ -711,7 +711,7 @@ This &lt;strong&gt;word&lt;/strong&gt; is bold. This &lt;em&gt;word&lt;/em&gt; i
 &lt;td&gt;exclamation mark&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</description></item><item><title>Placeholder Text</title><link>https://Aithan-web.github.io/p/placeholder-text/</link><pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/placeholder-text/</guid><description>&lt;img src="https://Aithan-web.github.io/p/placeholder-text/matt-le-SJSpo9hQf7s-unsplash.jpg" alt="Featured image of post Placeholder Text" /&gt;&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;
+&lt;/table&gt;</description></item><item><title>Placeholder Text</title><link>https://feiyt.github.io/p/placeholder-text/</link><pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate><guid>https://feiyt.github.io/p/placeholder-text/</guid><description>&lt;img src="https://feiyt.github.io/p/placeholder-text/matt-le-SJSpo9hQf7s-unsplash.jpg" alt="Featured image of post Placeholder Text" /&gt;&lt;p&gt;Lorem est tota propiore conpellat pectoribus de pectora summo.&lt;/p&gt;
 &lt;p&gt;Redit teque digerit hominumque toris verebor lumina non cervice subde tollit usus habet Arctonque, furores quas nec ferunt. Quoque montibus nunc caluere tempus inhospita parcite confusaque translucet patri vestro qui optatis lumine cognoscere flos nubis! Fronde ipsamque patulos Dryopen deorum.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Exierant elisi ambit vivere dedere&lt;/li&gt;
