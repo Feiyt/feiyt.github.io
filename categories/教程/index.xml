@@ -1,4 +1,82 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教程 on Feiy</title><link>https://Aithan-web.github.io/categories/%E6%95%99%E7%A8%8B/</link><description>Recent content in 教程 on Feiy</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Feiy</copyright><lastBuildDate>Sat, 05 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Aithan-web.github.io/categories/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows 关闭web网页搜索结果</title><link>https://Aithan-web.github.io/p/windows-%E5%85%B3%E9%97%ADweb%E7%BD%91%E9%A1%B5%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C/</link><pubDate>Sat, 05 Apr 2025 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/windows-%E5%85%B3%E9%97%ADweb%E7%BD%91%E9%A1%B5%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C/</guid><description>&lt;p&gt;注册表修改：Win+R键，或菜单框，输入regedit.exe运行，启动注册表编辑器。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>教程 on Feiy</title><link>https://Aithan-web.github.io/categories/%E6%95%99%E7%A8%8B/</link><description>Recent content in 教程 on Feiy</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Feiy</copyright><lastBuildDate>Fri, 11 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://Aithan-web.github.io/categories/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>Microsoft Store 初始化失败</title><link>https://Aithan-web.github.io/p/microsoft-store-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%A4%B1%E8%B4%A5/</link><pubDate>Fri, 11 Jul 2025 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/microsoft-store-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%A4%B1%E8%B4%A5/</guid><description>&lt;p&gt;Windows 11 专业版 64位 中国大陆&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://Aithan-web.github.io/p/microsoft-store-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%A4%B1%E8%B4%A5/image.png"
+width="1218"
+height="865"
+srcset="https://Aithan-web.github.io/p/microsoft-store-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%A4%B1%E8%B4%A5/image_hu_4a42402142b8844f.png 480w, https://Aithan-web.github.io/p/microsoft-store-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%A4%B1%E8%B4%A5/image_hu_a8f5941b56c7fd2b.png 1024w"
+loading="lazy"
+alt="alt text"
+class="gallery-image"
+data-flex-grow="140"
+data-flex-basis="337px"
+&gt;
+微软商店无法打开，提示“Microsoft Store 初始化失败。&lt;/p&gt;
+&lt;p&gt;解决方法：&lt;/p&gt;
+&lt;p&gt;打开&amp;quot;终端管理员（power shell）&amp;quot;→输入：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sfc /SCANNOW
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;（按下Enter键）&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Dism /Online /Cleanup-Image /ScanHealth
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;（按下Enter键）&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Dism /Online /Cleanup-Image /CheckHealth
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;（按下Enter键）&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;DISM /Online /Cleanup-image /RestoreHealth
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;（按下Enter键）&lt;/p&gt;
+&lt;p&gt;重启电脑，并再次输入：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Get-AppxPackage -AllUsers&lt;span class="p"&gt;|&lt;/span&gt; Foreach&lt;span class="o"&gt;{&lt;/span&gt;Add-AppxPackage -DisableDevelopmentMode -Register &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nv"&gt;$_&lt;/span&gt;.InstallLocation&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;\AppXManifest.xml&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;（按下Enter键）出现错误，请忽略。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sfc /SCANNOW
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;（按下Enter键）&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wsreset
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;（按下Enter键）&lt;/p&gt;
+&lt;p&gt;等待片刻，将自动打开应用商店。&lt;/p&gt;</description></item><item><title>Windows 关闭web网页搜索结果</title><link>https://Aithan-web.github.io/p/windows-%E5%85%B3%E9%97%ADweb%E7%BD%91%E9%A1%B5%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C/</link><pubDate>Sat, 05 Apr 2025 00:00:00 +0000</pubDate><guid>https://Aithan-web.github.io/p/windows-%E5%85%B3%E9%97%ADweb%E7%BD%91%E9%A1%B5%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C/</guid><description>&lt;p&gt;注册表修改：Win+R键，或菜单框，输入regedit.exe运行，启动注册表编辑器。&lt;/p&gt;
 &lt;p&gt;导航到计算机&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search&lt;/code&gt;&lt;/p&gt;
 &lt;h4 id="添加-bingsearchenabled"&gt;添加 BingSearchEnabled
